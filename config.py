@@ -7,10 +7,9 @@ class Config(object):
 
 class DevelopmentConfig(Config):
     DEBUG = True
-    # TODO : sqlite 말고 다른 DB
-    SQLALCHEMY_DATABASE_URI = 'sqlite+pysqlite:///dev_db.sqlite3'
+    SQLALCHEMY_DATABASE_URI = 'postgres://DB 주소 비공개'
 
 
 class ProductionConfig(Config):
-    # TODO : sqlite 말고 다른 DB
-    SQLALCHEMY_DATABASE_URI = 'sqlite+pysqlite:///prod_db.sqlite3'
+    # Heroku DB
+    SQLALCHEMY_DATABASE_URI = 'postgres://DB 주소 비공개'

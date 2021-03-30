@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title  %}
+
+{% endblock  %}
+
+{% block recommend  %}
+<form method='post' action='/api/recommend'>
+    <input type="hidden" name="username" value="{{username}}" />
+    <input type="submit" name="recommend" class="btn btn-dark float-right" value="추천 받기" />
+</form>
+{% endblock  %}
+
+{% block lead  %}
+{{ username }} 님 이 노래들은 어떤가요?
+{% endblock  %}
+
+{% block main_body  %}
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Image</th>
+        <th scope="col">Name</th>
+        <th scope="col">Artist</th>
+        <th scope="col">Preview</th>
+        <th scope="col">Like</th>
+      </tr>
+    </thead>
+    <tbody>
+    <form method='post' action='/track_choice'>
+    <input type="hidden" name="username" value="{{username}}" />
+    {% for track in tracks %}
+      <tr>
+        <th scope="row">{{ loop.index }}</th>
+        <td><img src="{{track.image_url}}" height="64" width="64"></td>
+        <td>{{ track.name }}</td>
+        <td>{{ track.artist }}</td>
+        <td>
+            {% if track.preview_url %}
+            <video controls="" preload="none" autoplay="false" name="media" style="height: 64px; width: 128px;">
+                <source src="{{track.preview_url}}" type="audio/mpeg">
+            </video>
+            {% endif %}
+        </td>
+        <td>
+            <button type="submit" class="btn btn-light" name="track_id" value="{{track.id}}" 
+            style="font-size: 32px; font-weight: 400; background-color: white; border-width: 0;">+</button>
+        </td>
+      </tr>
+    {% endfor %}
+    </form>
+    </tbody>
+</table>
+{% endblock  %}

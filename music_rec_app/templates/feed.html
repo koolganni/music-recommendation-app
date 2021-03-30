@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title  %}
+
+{% endblock  %}
+
+{% block lead  %}
+취향이 비슷한 사람들을 만나보세요.
+{% endblock  %}
+
+{% block main_body  %}
+
+{% if users is not none %}
+<div class="row">
+    {% for user in users %}
+        <div class="col-sm-6 mb-3">
+            <div class="card">
+                <div class="card-body">
+                <h5 class="card-title">{{ user.username }}</h5>
+                <a class="arrow btn btn-light float-right" href="/feed/{{ user.id }}" 
+                style="font-size: 24px;background-color: white;border-width: 0;font-weight: 200;">→</a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endif %}
+{% endblock  %}

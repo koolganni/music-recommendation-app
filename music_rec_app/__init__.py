@@ -18,11 +18,13 @@ def create_app(config=None):
         app.config.update(config)
 
     db.init_app(app)
+    with app.app_context():
+        db.create_all()
     migrate.init_app(app, db)
 
     from music_rec_app.views import main_views, user_views
     app.register_blueprint(main_views.bp)
-    # app.register_blueprint(user_views.bp, url_prefix='/api')
+    app.register_blueprint(user_views.bp, url_prefix='/api')
 
     return app
 

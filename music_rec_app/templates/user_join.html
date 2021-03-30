@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title  %}
+
+{% endblock  %} -->
+
+{% block lead  %}
+반갑습니다. 유저네임을 등록해주세요.
+{% endblock  %}
+
+{% block main_body  %}
+<form method="POST" action="/join">
+    <input name="username" style="margin-bottom:10px" class="form-control" type="text" placeholder="Enter username">
+    <input type="submit" class="btn btn-dark float-right" value="다음">
+</form>
+{% endblock  %}
