@@ -1,5 +1,6 @@
 from music_rec_app import db
 from music_rec_app.models import Track, User, MyMusic
+from settings import *
 from sklearn.metrics.pairwise import cosine_similarity
 from scipy.spatial.distance import cdist
 import numpy as np
@@ -18,9 +19,8 @@ def get_mean_vector(df_mymusic):
 # Contents(Item) based 추천 (유사도 metric : 코사인 거리)
 def recommend_track(track_id_list=None, num_of_track=10):
     # 전체 음악
-    # df_tracks = pd.read_sql_table('track', 'postgres://DB 주소 비공개')
-    # 테스트
-    df_tracks = pd.read_csv('/Users/gayeon/Codestates/music-recommendation-app/tracks.csv')
+    df_tracks = pd.read_sql_table('track', DEV_DB_URI)
+    # df_tracks = pd.read_csv(DEV_CSV_URI)
     df_tracks.drop_duplicates(subset=['spotify_id'], inplace=True)
 
     # 유저 마이 뮤직

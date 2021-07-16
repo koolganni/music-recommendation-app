@@ -1,4 +1,5 @@
 import os
+from settings import *
 
 class Config(object):
     DEBUG = False
@@ -7,9 +8,8 @@ class Config(object):
 
 class DevelopmentConfig(Config):
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = 'postgres://DB 주소 비공개'
+    SQLALCHEMY_DATABASE_URI = DEV_DB_URI
 
 
 class ProductionConfig(Config):
-    # Heroku DB
-    SQLALCHEMY_DATABASE_URI = 'postgres://DB 주소 비공개'
+    SQLALCHEMY_DATABASE_URI = PROD_DB_URI
